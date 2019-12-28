@@ -1,0 +1,88 @@
+import React from 'react';
+import { StyleSheet, Text, View,Image } from 'react-native';
+import  Homescreen from './src/screens/Homescreen';
+import DrawerNavigator from './navigation/drawernavigation';
+import AppIntroSlider from 'react-native-app-intro-slider';
+
+const slides = [
+  {
+    key: 'somethun',
+    title: 'Title 1',
+    text: 'Description.\nSay something cool',
+    image: require('./assets/1.jpg'),
+    backgroundColor: '#59b2ab',
+  },
+  {
+    key: 'somethun',
+    title: 'Title 2',
+    text: 'Description.\nSay something cool',
+    image: require('./assets/1.jpg'),
+    backgroundColor: '#59b2ab',
+  },
+  
+];
+
+export default class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state={showRealApp:false , flag:true }
+    // AsyncStorage.setItem('sliderkey', true);     
+  }
+
+  _renderItem = ({ item }) => {
+    return (
+      <View style={styles.mainContent}>
+        <Text style={styles.title}>{item.title}</Text>
+        <Image source={item.image} />
+        <Text syle={styles.text}>{item.text}</Text>
+      </View>
+    );
+  }
+  _onDone = () => {
+    this.setState({ showRealApp: true });
+  }
+
+  render(){
+  
+    if(this.state.showRealApp){
+    
+      return (<View style={styles.container}>
+        <DrawerNavigator />
+      </View> );
+    }
+    else{
+      return (<AppIntroSlider renderItem={this._renderItem} slides={slides} onDone={this._onDone}/>);
+    }
+    
+    
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  mainContent: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  image: {
+    width: 120,
+    height: 320,
+  },
+  text: {
+    color: 'rgba(255, 255, 255, 0.8)',
+    backgroundColor: 'transparent',
+    textAlign: 'center',
+    paddingHorizontal: 16,
+  },
+  title: {
+    fontSize: 22,
+    color: 'white',
+    backgroundColor: 'transparent',
+    textAlign: 'center',
+    marginBottom: 16,
+  },
+});

@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "Business Calculator",
+    "slug": "Savan Jasani/Business Calculator",
+    "sdkVersion": "36.0.0",
+    "android":  {
+      "package" : "com.newcompany.firstapp"
+    },
+    "splash": {
+      "image": "./assets/icon13.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/app2.png"
+  }
+}
